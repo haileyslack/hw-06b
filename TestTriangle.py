@@ -70,6 +70,32 @@ class TestTriangles(unittest.TestCase):
     def testMinimumValid(self):
         self.assertEqual(classifyTriangle(1, 1, 1), 'Equilateral')
 
+    # Additional invalid input tests
+    def testBooleanInput(self):
+        self.assertEqual(classifyTriangle(True, 4, 5), 'InvalidInput')
+
+    def testNegativeSecondSide(self):
+        self.assertEqual(classifyTriangle(4, -1, 5), 'InvalidInput')
+
+    def testNegativeThirdSide(self):
+        self.assertEqual(classifyTriangle(4, 5, -1), 'InvalidInput')
+
+    def testAboveMaximumSecondSide(self):
+        self.assertEqual(classifyTriangle(5, 201, 5), 'InvalidInput')
+
+    def testAboveMaximumThirdSide(self):
+        self.assertEqual(classifyTriangle(5, 5, 201), 'InvalidInput')
+
+    # Additional triangle inequality boundary tests
+    def testTriangleBoundaryA(self):
+        self.assertEqual(classifyTriangle(2, 3, 5), 'NotATriangle')
+
+    def testTriangleBoundaryB(self):
+        self.assertEqual(classifyTriangle(5, 2, 3), 'NotATriangle')
+
+    def testTriangleBoundaryC(self):
+        self.assertEqual(classifyTriangle(3, 5, 2), 'NotATriangle')
+
 
 if __name__ == '__main__':
     unittest.main()
